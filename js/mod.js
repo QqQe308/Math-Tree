@@ -13,24 +13,28 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.1",
-	name: "整式",
+	num: "0.15",
+	name: "分式",
 }
 
 
-// Determines when the game "ends"
 // Maths Never Ends.
 function isEndgame() {
 	return false
 }
 
 let changelog = `<h1>更新日志</h1><br>
-<h2>v0.0 整式之始 2023/12/24~2023/12/31<br>
-<h3>- 添加第九章：整式
+<h2>v0.15 分式 2024/1/2~2024/1/6<br>
+<h3>- 添加第十章——分式
+<br>- 添加第九章——整式(进阶模式)
+<br>- 添加10.3通分
+<br>- 完成至8个成就<br><br>
+<h2>v0.1 整式 2023/12/24~2023/12/31<br>
+<h3>- 添加第九章——整式
 <br>- 添加9.3代数式的值，9.10多项式乘多项式，9.15十字相乘法
 <br>- 完成至6个成就`
 
-let winText = `Congratulations! You have reached the end and beaten this game, but for now...`
+let winText = `数学之路，仍待开发…`
 
 // If you add new functions anywhere inside of a layer, and those functions have an effect when called, add them here.
 // (The ones here are examples, all official functions are already taken care of)
@@ -47,19 +51,17 @@ function canGenPoints(){
 
 // Calculate points/sec!
 function getPointGen() {
-	if(!canGenPoints())
 		return new Decimal(0)
-
-	let gain = new Decimal(1)
-	return gain
 }
 
 // You can add non-layer related variables that should to into "player" and be saved here, along with default values
 function addedPlayerData() { return {
+ hypoints:new Decimal(0)//进阶模式题目
 }}
 
 // Display extra things at the top of the page
 var displayThings = [
+  "你在进阶模式中做了"+(player.hypoints)+"题目！",
 ]
 
 
@@ -81,3 +83,21 @@ function maxTickLength() {
 // you can cap their current resources with this.
 function fixOldSave(oldVersion){
 }
+
+function gbs(num1,num2)
+{ var num3=gys(num1,num2)
+ return num1*num2/num3
+}
+function gys(num1,num2) {
+if ((num1-num2) < 0) {
+var k = num1;
+num1 = num2;
+num2 = k;
+}
+while (num2 !=0) {
+var remainder = num1%num2;
+num1 = num2;
+num2 = remainder;
+}
+return num1;
+}//求最大公约数，网上抄的
